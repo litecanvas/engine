@@ -21,7 +21,10 @@
         "url": "https://github.com/litecanvas/game-engine/issues"
     },
     "type": "module",
-    "main": "src/index.js",
+    "exports": {
+        ".": "./dist/module.js",
+        "./dev": "./dist/module.dev.js"
+    },
     "types": "types/index.d.ts",
     "scripts": {
         "test": "npm run build && ava",

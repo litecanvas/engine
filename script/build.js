@@ -6,6 +6,29 @@ import { gzipSizeSync } from 'gzip-size'
 fs.rmSync('dist', { recursive: true, force: true })
 
 await esbuild.build({
+    entryPoints: ['src/index.js'],
+    outfile: 'dist/module.js',
+    bundle: true,
+    format: 'esm',
+    minify: true,
+    legalComments: 'eof',
+    define: {
+        DEV_BUILD: 'false',
+    },
+})
+
+await esbuild.build({
+    entryPoints: ['src/index.js'],
+    outfile: 'dist/module.dev.js',
+    bundle: true,
+    format: 'esm',
+    legalComments: 'eof',
+    define: {
+        DEV_BUILD: 'true',
+    },
+})
+
+await esbuild.build({
     entryPoints: ['src/web.js'],
     outfile: 'dist/dist.dev.js',
     bundle: true,
